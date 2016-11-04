@@ -33,5 +33,8 @@
     "url": "git://github.com/sucode/relmng.git"
   },
   "author": "sucode",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "sails-hook-autoreload": "^0.13.2"
+  }
 }
