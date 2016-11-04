@@ -13,16 +13,8 @@ module.exports = {
         // });
     },
     postRelease: function(request, response) {
-        console.log(JSON.stringify(request.params));
-        console.log(request.param('Description'));
-        Release.create(request.params
-        //     {
-        //     'Milestone': request.param('Milestone'),
-        //     'Urgency': request.param('Urgency'),
-        //     'Product': request.param('Product'), 
-        // }
-        ).exec(function(err, release){
-            if (err) { return res.serverError(err); }
+        Release.create(request.body).exec(function(err, release){
+            if (err) { return response.serverError(err); }
 
             return response.view('printrelease', { 'id' : release.id});
         });
