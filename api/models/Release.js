@@ -9,10 +9,13 @@ module.exports = {
 
   attributes: {
     id: {
-      type: 'integer',
+      type: 'string',
       primaryKey: true,
       unique: true,
       required: true,
+      defaultsTo: function() {
+        return uuid.v4();
+      },
     },
     Milestone: {
       type: 'string',

@@ -27,6 +27,25 @@ module.exports.models = {
   * See http://sailsjs.org/#!/documentation/concepts/ORM/model-settings.html  *
   *                                                                          *
   ***************************************************************************/
-  // migrate: 'alter'
+  migrate: 'alter',
 
+  // http://stackoverflow.com/questions/25936910/sails-js-model-insert-or-update-records#answer-30751215
+  updateOrCreate: function(criteria, values, callback) {
+    var self = this; // reference for use by callbacks
+    // If no values were specified, use criteria
+    if (!values) values = criteria.where ? criteria.where : criteria;
+
+    this.findOne(criteria, function (err, result){
+      if(err) return callback(err, false);
+      if(result) {
+        self.update(criteria, values).exec(function(err, updated) {
+          return callback(err, updated[0]);
+        });
+      } else {
+        self.create(values).exec(function(err, newRecord) {
+          return callback(err, newRecord);   
+        });
+      }
+    });
+  }
 };

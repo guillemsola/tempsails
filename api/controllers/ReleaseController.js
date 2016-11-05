@@ -7,18 +7,20 @@
 
 module.exports = {
 	index: function(request, response) {
-        // Release.find().exec(function(err, releases) {
-        //     console.log(releases);
-            return response.view('release', { });
-        // });
+        Release.find({id: request.param('id')}).exec(function(err, releases) {
+            if (err) { return response.serverError(err); }
+            if(typeof releases !== 'undefined') {
+                release = releases[0];
+            }
+            return response.view('release', { 'release': release });
+        });
     },
     postRelease: function(request, response) {
-        Release.create(request.body).exec(function(err, release){
+        Release.updateOrCreate({id: request.param('id')}, request.body, function(err, release) {
             if (err) { return response.serverError(err); }
 
             return response.view('printrelease', { 'id' : release.id});
         });
-        
     },
 };
 
