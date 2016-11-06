@@ -5,6 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+const uuid = require('uuid');
 module.exports = {
 	index: function(request, response) {
         Release.find({id: request.param('id')}).exec(function(err, releases) {
@@ -16,7 +17,8 @@ module.exports = {
         });
     },
     postRelease: function(request, response) {
-        Release.updateOrCreate({id: request.param('id')}, request.body, function(err, release) {
+        console.log(request.allParams());
+        Release.updateOrCreate({id: request.param('id')}, request.allParams(), function(err, release) {
             if (err) { return response.serverError(err); }
 
             return response.view('printrelease', { 'id' : release.id});

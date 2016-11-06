@@ -164,5 +164,27 @@
     <script src="/js/raphael.js"></script>
     <script src="/js/sb-admin-2.js"></script>
     <!--SCRIPTS END-->
+    <!--TODO Move this together with view-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#addComponent').click(function() {
+                var componentId = randomString();
+                $('#components').append('<div class="form-group"><label for="inputComponent' + componentId +
+                '" class="col-sm-2 control-label">Component:</label><input type="text" name="components[]" id="inputComponent' +
+                componentId + '" class="form-control" title="Release Component"></div>');
+            })
+        });
+
+        function randomString()
+        {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for( var i=0; i < 5; i++ )
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        }
+    </script>
   </body>
 </html>
