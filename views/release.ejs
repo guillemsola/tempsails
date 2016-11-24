@@ -19,8 +19,7 @@
 
     <div class="form-group">
         <label for="inputid" class="col-sm-2 control-label">id:</label>
-        <% var uuid = require('uuid'); %>
-        <input type="text" name="id" id="inputid" class="form-control" value="<%- release ? release.id : uuid.v4()%>" title="id">
+        <input type="text" name="id" id="inputid" class="form-control" value="<%- release ? release.id : ''%>" title="id" disabled>
     </div>
 
     <div class="form-group">
@@ -77,20 +76,29 @@
         <input type="email" name="SM" id="inputScrumMaster" class="form-control" value="<%- release ? release.SM : ''%>" required="required" title="The release Scrum Master.">
     </div>
 
-    <div id="components" class="row">
-        
-        <div class="form-group">
-            <label for="inputComponent1" class="col-sm-2 control-label">Component 1:</label>
-            <input type="text" name="components[]" id="inputComponent1" class="form-control" title="Release Component">
+    <!--Add components-->
+    <div class="panel panel-default">
+        <div class="panel-heading">Enter Release Components</div>
+        <div class="panel-body">
+            <div id="components">
+            <% if (release && release.components) { %>
+            <% release.components.forEach(function(component) {%>
+                <div class="form-group input-group">
+                    <input type="text" name="components[][name]" class="form-control" title="Release component" value="<%= component.name %>">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-danger remove-component"><i class="fa fa-times"></i></button>
+                    </span>
+                </div>
+            <% }); %>
+            <% } %>
+            </div>
+            <button id="addComponent" type="button" class="btn">Add Component</button>
         </div>
-
-        
-        <button id="addComponent" type="button" class="btn">Add</button>
-        
-        
+            
     </div>
+    <!--End add components-->
     
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default"><%- release ? 'Update': 'Create'%></button>
 </form>
                             </div>
                         </div>
@@ -100,3 +108,4 @@
         </div>
     </div>
 
+<% block('localScripts', '<script src="views/createRelease.js"></script>') %>

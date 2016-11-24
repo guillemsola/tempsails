@@ -5,20 +5,26 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-const uuid = require('uuid');
+var uuid  = require('node-uuid');
+
 module.exports = {
+    
 	index: function(request, response) {
         Release.find({id: request.param('id')}).exec(function(err, releases) {
             if (err) { return response.serverError(err); }
             if(typeof releases !== 'undefined') {
                 release = releases[0];
             }
-            return response.view('release', { 'release': release });
+            return response.view('release', { 'release': release, 'uuid' : uuid });
         });
     },
     postRelease: function(request, response) {
-        console.log(request.allParams());
-        Release.updateOrCreate({id: request.param('id')}, request.allParams(), function(err, release) {
+        var values = request.allParams();
+        if( values.id == '' ) {
+            delete values.id;
+         };
+        
+        Release.updateOrCreate({ id: values.id }, values, function(err, release) {
             if (err) { return response.serverError(err); }
 
             return response.view('printrelease', { 'id' : release.id});

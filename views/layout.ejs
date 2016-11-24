@@ -41,8 +41,6 @@
   <body>
     <%- body %>
 
-
-
     <!--
         Client-side Templates
         ========================
@@ -94,6 +92,7 @@
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/jquery.min.js"></script>
     <script src="/js/dependencies/bootstrap.min.js"></script>
     <script src="/js/dependencies/dataTables.bootstrap.min.js"></script>
     <script src="/js/dependencies/dataTables.bootstrap4.min.js"></script>
@@ -123,7 +122,6 @@
     <script src="/js/dependencies/jquery.flot.time.js"></script>
     <script src="/js/dependencies/jquery.flot.tooltip.min.js"></script>
     <script src="/js/dependencies/jquery.flot.tooltip.source.js"></script>
-    <script src="/js/dependencies/jquery.min.js"></script>
     <script src="/js/dependencies/metisMenu.min.js"></script>
     <script src="/js/dependencies/morris.min.js"></script>
     <script src="/js/dependencies/raphael.min.js"></script>
@@ -163,28 +161,9 @@
     <script src="/js/morris.js"></script>
     <script src="/js/raphael.js"></script>
     <script src="/js/sb-admin-2.js"></script>
+    <script src="/js/views/createRelease.js"></script>
+    <script src="/js/views/uuid.js"></script>
     <!--SCRIPTS END-->
-    <!--TODO Move this together with view-->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#addComponent').click(function() {
-                var componentId = randomString();
-                $('#components').append('<div class="form-group"><label for="inputComponent' + componentId +
-                '" class="col-sm-2 control-label">Component:</label><input type="text" name="components[]" id="inputComponent' +
-                componentId + '" class="form-control" title="Release Component"></div>');
-            })
-        });
 
-        function randomString()
-        {
-            var text = "";
-            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-            for( var i=0; i < 5; i++ )
-                text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-            return text;
-        }
-    </script>
   </body>
 </html>

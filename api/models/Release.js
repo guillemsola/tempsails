@@ -5,6 +5,8 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
+const uuid = require('node-uuid');
+
 module.exports = {
 
   attributes: {
@@ -12,10 +14,7 @@ module.exports = {
       type: 'string',
       primaryKey: true,
       unique: true,
-      required: true,
-      defaultsTo: function() {
-        return uuid.v4();
-      },
+      defaultsTo: uuid.v4,
     },
     Milestone: {
       type: 'string',
@@ -52,6 +51,10 @@ module.exports = {
       type: 'email',
       required: true,
     },
+    Components: {
+      collection: 'component',
+      via: 'release'
+    }
   }
 };
 
