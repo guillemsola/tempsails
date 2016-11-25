@@ -27,14 +27,22 @@ var jsFilesToInject = [
 
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
-  // jQuery next
+  // jQuery
   'js/dependencies/jquery.min.js',
+  // Bootstrap Core JavaScript
+  'js/dependencies/bootstrap.min.js',
+  // Metis Menu Plugin JavaScript
+  'js/dependencies/metisMenu.min.js',
+  // DataTables JavaScript 
+  'js/dependencies/jquery.dataTables.min.js',
+  'js/dependencies/dataTables.bootstrap.min.js',
+  'js/dependencies/datatables-responsive/dataTables.responsive.js',
   // Dependencies like jQuery, or Angular are brought in here
-  'js/dependencies/**/*.js',
+  // 'js/dependencies/**/*.js',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-  'js/**/*.js'
+  // 'js/**/*.js'
 ];
 
 
@@ -50,12 +58,6 @@ var jsFilesToInject = [
 var templateFilesToInject = [
   'templates/**/*.html'
 ];
-
-
-
-
-
-
 
 // Default path for public folder (see documentation for more information)
 var tmpPath = '.tmp/public/';

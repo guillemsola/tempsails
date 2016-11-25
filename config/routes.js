@@ -32,10 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
-  'post /release': 'ReleaseController.postRelease'
+  '/': 'ReleaseController.listAll',
+  'POST /release': 'ReleaseController.postRelease',
+  
 
   /***************************************************************************
   *                                                                          *

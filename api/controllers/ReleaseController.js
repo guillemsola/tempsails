@@ -5,7 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-var definitions = require('../services/definitions.js');
+var definitions = require('../services/definitions.js'),
+    atlas = require('../services/atlas.js');
 
 module.exports = {
     
@@ -15,7 +16,9 @@ module.exports = {
             if(typeof releases !== 'undefined') {
                 release = releases[0];
             }
-            return response.view('release', { 'release': release, 'urgencyList' : definitions.urgency });
+            atlas.getApps(function(components) {
+                return response.view('release', { 'release': release, 'urgencies' : definitions.urgencies, 'components': components });
+            })
         });
     },
     postRelease: function(request, response) {
@@ -30,5 +33,10 @@ module.exports = {
             return response.view('printrelease', { 'id' : release.id});
         });
     },
+    listAll: function(request, response) {
+        Release.find({}).exec(function(err, releases) {
+            return response.view('releases', { 'releases': releases });
+        });
+    }
 };
 

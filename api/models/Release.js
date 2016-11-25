@@ -23,7 +23,7 @@ module.exports = {
     },
     Urgency: {
       type: 'string',
-      enum: definitions.urgency,
+      enum: definitions.urgencies,
       required: true,
     },
     Product: {
