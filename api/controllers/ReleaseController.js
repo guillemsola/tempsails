@@ -5,7 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-var uuid  = require('node-uuid');
+var definitions = require('../services/definitions.js');
 
 module.exports = {
     
@@ -15,7 +15,7 @@ module.exports = {
             if(typeof releases !== 'undefined') {
                 release = releases[0];
             }
-            return response.view('release', { 'release': release, 'uuid' : uuid });
+            return response.view('release', { 'release': release, 'urgencyList' : definitions.urgency });
         });
     },
     postRelease: function(request, response) {

@@ -5,7 +5,8 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
-const uuid = require('node-uuid');
+var uuid = require('node-uuid'),
+    definitions = require('../services/definitions.js');
 
 module.exports = {
 
@@ -22,7 +23,7 @@ module.exports = {
     },
     Urgency: {
       type: 'string',
-      enum: ['Low', 'Medium', 'High', 'Critical', 'Urgent'],
+      enum: definitions.urgency,
       required: true,
     },
     Product: {
