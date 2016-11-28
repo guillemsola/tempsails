@@ -30,7 +30,8 @@ module.exports = {
         Release.updateOrCreate({ id: values.id }, values, function(err, release) {
             if (err) { return response.serverError(err); }
 
-            return response.view('printrelease', { 'id' : release.id});
+            // TODO remove debug only view('printrelease', { 'id' : release.id});
+            return response.redirect('/');
         });
     },
     listAll: function(request, response) {

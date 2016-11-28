@@ -14,8 +14,8 @@ $(function() {
         $('form').submit(function(e) {
             // Assigning correct array order to push data
             $('#components :input[type="text"]').each(function(i) {
-                $(this).context.name = 'components[' + i + '][name]';
-                
+                //$(this).context.name = 'components[' + i + '][name]';
+                $(this)[0].name = 'components[' + i + '][name]';
             });
         });
     });
